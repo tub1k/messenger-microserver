@@ -1,5 +1,6 @@
 const express = require('express');
 const admin = require('firebase-admin');
+const { cert } = require('firebase-admin/app');
 
 const app = express();
 app.use(express.json());
@@ -7,7 +8,7 @@ app.use(express.json());
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: cert(serviceAccount)
 });
 
 app.post('/send-push', async (req, res) => {
