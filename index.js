@@ -33,7 +33,6 @@ app.post('/send-push', async (req, res) => {
       priority: 'high',
       notification: {
         channelId: 'main_channel',
-        importance: 'max',
         priority: 'high',
       }
     }
