@@ -2,6 +2,7 @@ const express = require('express');
 const admin = require('firebase-admin');
 const cors = require('cors');
 const { cert } = require('firebase-admin/app');
+const { getMessaging } = require('firebase-admin/messaging');
 
 const app = express();
 app.use(cors());
@@ -39,7 +40,7 @@ app.post('/send-push', async (req, res) => {
   };
 
   try {
-    const response = await admin.messaging().send(message);
+    const response = await getMessaging().send(message);
     console.log('Успешно отправлено в Firebase! ID сообщения:', response);
     res.json({ success: true, messageId: response });
   } catch (error) {
