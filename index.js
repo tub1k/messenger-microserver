@@ -19,7 +19,7 @@ app.post('/send-push', async (req, res) => {
   console.log('--- Получен запрос на отправку пуша! ---');
   console.log('Тело запроса:', req.body);
 
-  const { token, title, body } = req.body;
+  const { token, title, body, data = {} } = req.body;
 
   if (!token || !title || !body) {
     console.error('Ошибка: Переданы не все поля!');
@@ -29,6 +29,7 @@ app.post('/send-push', async (req, res) => {
   const message = {
     notification: { title, body },
     token: token,
+    data: data,
     android: {
       priority: 'high',
       notification: {
